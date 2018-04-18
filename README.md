@@ -29,4 +29,4 @@
 
 ## Author
 
-Yuya Okumur (saroteki)
+Yuya Okumur (srttk)
