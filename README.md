@@ -1,6 +1,8 @@
-# myhead
+# imgconv
 
 指定したファイルを再帰的に調査し、画像を変換します。
+
+使用しているパッケージの詳細はこちら https://godoc.org/github.com/srttk/imgconv/converter
 
 
 ## Installation
