@@ -12,7 +12,11 @@ import (
 	"errors"
 )
 
-//Images contains filepath without extension and image.Image
+/*
+Images contains filepath without extension and image.Image
+
+Execution is very slow, so please avoid using it on actual programs
+ */
 type Images map[string]image.Image //key is fipepath without extension, val is image.Image
 
 var images Images
