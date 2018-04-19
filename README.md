@@ -11,7 +11,11 @@
 
 ## Usage
 
-`$ imgconv -src=png -out=jpg YOUR_WANT_CONVERT_IMAGE_DIR_NAME`
+cloneしたプロジェクトディレクトリにて場合以下のコマンドで動作します。
+
+`test_images` の部分を適宜置き換えてください。
+
+`$ imgconv -src=jpg -out=png test_images`
 
 ### src引数
 
@@ -21,6 +25,8 @@
 
 対応している拡張子は `png, jpg, jpeg, gif` です。
 
+`-s` ショートハンドがあります
+
 ### out属性
 
 `out` 属性もおなじく、ファイルタイプを指定する拡張子を入力します。
@@ -28,6 +34,8 @@
 この属性で指定した拡張子に画像を変換します。
 
 対応している拡張子は `png, jpg, jpeg, gif` です。
+
+`-o` ショートハンドがあります
 
 ## Author
 
