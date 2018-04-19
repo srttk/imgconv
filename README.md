@@ -12,11 +12,7 @@
 
 ## Usage
 
-cloneしたプロジェクトディレクトリにて場合以下のコマンドで動作します。
-
-`test_images` の部分を適宜置き換えてください。
-
-`$ imgconv -src=jpg -out=png test_images`
+`$ imgconv -src=jpg -out=png IMG_DIR`
 
 ### src引数
 
