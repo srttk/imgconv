@@ -4,8 +4,7 @@
 
 実行がとても遅いので、実際のプログラム上で利用するのは避けてください。
 
-使用しているパッケージの詳細はこちら https://godoc.org/github.com/srttk/imgconv/converter
-
+[![GoDoc](https://godoc.org/github.com/srttk/imgconv/converter?status.svg)](https://godoc.org/github.com/srttk/imgconv/converter)
 
 ## Installation
 
