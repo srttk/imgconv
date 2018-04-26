@@ -1,31 +1,57 @@
 package main
 
 import (
-	"log"
 	"flag"
+	"os"
+	"fmt"
+	"path/filepath"
 
-	"github.com/srttk/imgconv/converter"
+	"github.com/srttk/imgconv/encode"
 )
 
-var srcType string
-var outType string
+var srcExt string
+var distExt string
 var srcDir  string
 
 func init() {
-	flag.StringVar(&srcType, "src", "jpeg", "set source image type")
-	flag.StringVar(&srcType, "s", "jpeg", "shorthand 'src flag'")
-	flag.StringVar(&outType, "out", "png", "set output image type")
-	flag.StringVar(&outType, "o", "png", "shorthand 'out flag")
+	flag.StringVar(&srcExt, "src", "jpeg", "set source image ext")
+	flag.StringVar(&srcExt, "s", "jpeg", "shorthand 'src flag'")
+	flag.StringVar(&distExt, "out", "png", "set output image ext")
+	flag.StringVar(&distExt, "o", "png", "shorthand 'out flag")
 }
 
 func main() {
 	flag.Parse()
-	srcDir = flag.Arg(0)
-	converter, err := converter.NewImages(srcType, srcDir)
-	if err != nil {
-		log.Fatal(err)
+	if len(flag.Args()) == 0 {
+		fmt.Print("required 'filedir' params")
+		os.Exit(2)
 	}
-	if err := converter.ConvertTo(outType); err != nil {
-		log.Fatal(err)
+	srcDir = flag.Arg(0)
+	err := filepath.Walk(srcDir, func(path string, info os.FileInfo, err error) error {
+		if filepath.Ext(path) != "."+srcExt {
+			return nil
+		}
+		srcFile, err := os.Open(path)
+		defer srcFile.Close()
+		if err != nil {
+			return err
+		}
+		encoder, err := encode.NewEncoder(srcExt, srcFile)
+		if err != nil {
+			return err
+		}
+		distFile, err := os.Create(encode.GetDistPath(path, srcExt, distExt))
+		if err != nil {
+			return err
+		}
+		err = encoder.Encode(distFile)
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+	if err != nil {
+		fmt.Print(err)
+		os.Exit(2)
 	}
 }
